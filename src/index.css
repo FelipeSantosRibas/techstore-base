@@ -218,6 +218,7 @@ h2 {
 }
 
 .mini-carrinho {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--espaco-2);
@@ -230,6 +231,25 @@ h2 {
 
 .mini-carrinho:hover {
   border-color: var(--cor-texto);
+}
+
+.mini-carrinho-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cor-marca);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 0 0 2px var(--cor-superficie);
 }
 
 .mini-carrinho-icone {

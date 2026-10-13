@@ -16,8 +16,16 @@ export default function PaginaProduto({ produtos, onAdicionar }) {
     )
   }
 
+  const produtoIndisponivel = Number(produto.price) === 0 || Number(produto.estoque) === 0
+
   const relacionados = produtos
-    .filter((item) => item.category === produto.category && item.id !== produto.id)
+    .filter(
+      (item) =>
+        item.category === produto.category &&
+        item.id !== produto.id &&
+        Number(item.estoque) > 0 &&
+        Number(item.price) > 0
+    )
     .slice(0, 4)
 
   return (
@@ -46,9 +54,9 @@ export default function PaginaProduto({ produtos, onAdicionar }) {
             <button
               className="botao botao-grande"
               onClick={() => onAdicionar(produto)}
-              disabled={produto.estoque === 0}
+              disabled={produtoIndisponivel}
             >
-              Adicionar ao carrinho
+              {produtoIndisponivel ? 'Indisponível' : 'Adicionar ao carrinho'}
             </button>
 
             {produto.estoque === 0 && (
@@ -76,8 +84,8 @@ export default function PaginaProduto({ produtos, onAdicionar }) {
               <h3 className="card-titulo">{item.title}</h3>
             </Link>
             <p className="preco">{formatarPreco(item.price)}</p>
-            <button className="botao" onClick={() => onAdicionar(item)}>
-              Adicionar ao carrinho
+            <button className="botao" onClick={() => onAdicionar(item)} disabled={Number(item.price) === 0 || Number(item.estoque) === 0}>
+              {Number(item.price) === 0 || Number(item.estoque) === 0 ? 'Indisponível' : 'Adicionar ao carrinho'}
             </button>
           </article>
         ))}

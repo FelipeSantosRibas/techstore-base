@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import SugestaoItem from '../components/SugestaoItem'
 import { agruparItens, calcularTotal } from '../utils/carrinho'
@@ -9,6 +9,12 @@ export default function Carrinho({ carrinho, produtos, clienteAtual, onAdicionar
   const [codigoCupom, setCodigoCupom] = useState('')
   const [cupomAplicado, setCupomAplicado] = useState(null)
   const [mensagemCupom, setMensagemCupom] = useState('')
+
+  useEffect(() => {
+    setCodigoCupom('')
+    setCupomAplicado(null)
+    setMensagemCupom('')
+  }, [clienteAtual?.id])
 
   const itens = agruparItens(carrinho)
   const total = calcularTotal(carrinho)
@@ -27,7 +33,11 @@ export default function Carrinho({ carrinho, produtos, clienteAtual, onAdicionar
       setMensagemCupom('Cupom aplicado!')
     } else {
       setCupomAplicado(null)
-      setMensagemCupom('Cupom inválido')
+      setMensagemCupom(
+        clienteAtual && clienteAtual.pedidosAnteriores > 0
+          ? 'Cupom apenas para novos usuários'
+          : 'Cupom inválido'
+      )
     }
   }
 
