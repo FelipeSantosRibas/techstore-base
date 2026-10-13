@@ -1,5 +1,7 @@
+import { parsePreco } from './carrinho'
+
 export function formatarPreco(valor) {
-  return Number(valor).toLocaleString('pt-BR', {
+  return parsePreco(valor).toLocaleString('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   })
