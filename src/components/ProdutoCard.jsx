@@ -29,9 +29,17 @@ export default function ProdutoCard({ produto, onAdicionar }) {
         {esgotado && <span className="selo selo-esgotado">Esgotado</span>}
       </div>
 
-      <button className="botao" onClick={() => onAdicionar(produto)} disabled={esgotado}>
-        Adicionar ao carrinho
-      </button>
+      <div className="card-acoes">
+        <button className="botao" onClick={() => onAdicionar(produto)} disabled={esgotado}>
+          Adicionar ao carrinho
+        </button>
+
+        {esgotado && (
+          <button type="button" className="botao botao-secundario botao-notificacao">
+            Notificar-me
+          </button>
+        )}
+      </div>
     </article>
   )
 }

@@ -395,7 +395,7 @@ h2 {
   font-size: 0.85rem;
 }
 
-.preco-original + .preco {
+.preco-original+.preco {
   color: var(--cor-destaque);
 }
 
@@ -482,6 +482,23 @@ h2 {
   margin-top: 0;
   padding: var(--espaco-4) var(--espaco-5);
   font-size: 1rem;
+}
+
+.card-acoes,
+.detalhe-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  align-items: center;
+}
+
+.card-acoes .botao,
+.detalhe-acoes .botao {
+  flex: 1 1 0;
+}
+
+.botao-notificacao {
+  white-space: nowrap;
 }
 
 .botao-texto {
@@ -622,7 +639,7 @@ h2 {
   padding: var(--espaco-4);
 }
 
-.item-carrinho + .item-carrinho {
+.item-carrinho+.item-carrinho {
   border-top: 1px solid var(--cor-borda);
 }
 

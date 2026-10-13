@@ -42,13 +42,21 @@ export default function PaginaProduto({ produtos, onAdicionar }) {
           <p className="detalhe-descricao">{produto.description}</p>
           <p className="detalhe-estoque">{produto.estoque} unidades disponíveis</p>
 
-          <button
-            className="botao botao-grande"
-            onClick={() => onAdicionar(produto)}
-            disabled={produto.estoque === 0}
-          >
-            Adicionar ao carrinho
-          </button>
+          <div className="detalhe-acoes">
+            <button
+              className="botao botao-grande"
+              onClick={() => onAdicionar(produto)}
+              disabled={produto.estoque === 0}
+            >
+              Adicionar ao carrinho
+            </button>
+
+            {produto.estoque === 0 && (
+              <button type="button" className="botao botao-secundario botao-grande botao-notificacao">
+                Notificar-me
+              </button>
+            )}
+          </div>
 
           <ul className="detalhe-garantias">
             <li>Troca grátis em até 30 dias</li>
